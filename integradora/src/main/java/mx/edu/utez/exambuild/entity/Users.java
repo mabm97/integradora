@@ -45,7 +45,7 @@ public class Users implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usersid", fetch = FetchType.LAZY)
     private List<Teacher> teacherList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usersid", fetch = FetchType.LAZY)
-    private List<Pupil> pupilList;
+    private List<Alumn> alumnList;
 
     public Users() {
     }
@@ -112,12 +112,12 @@ public class Users implements Serializable {
     }
 
     @XmlTransient
-    public List<Pupil> getPupilList() {
-        return pupilList;
+    public List<Alumn> getAlumnList() {
+        return alumnList;
     }
 
-    public void setPupilList(List<Pupil> pupilList) {
-        this.pupilList = pupilList;
+    public void setAlumnList(List<Alumn> alumnList) {
+        this.alumnList = alumnList;
     }
 
     @Override
@@ -144,5 +144,5 @@ public class Users implements Serializable {
     public String toString() {
         return "integradora.Users[ id=" + id + " ]";
     }
-    
+
 }

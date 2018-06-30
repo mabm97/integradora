@@ -44,9 +44,9 @@ public class Historyexam implements Serializable {
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateEnd;
-    @JoinColumn(name = "Pupil_id", referencedColumnName = "id")
+    @JoinColumn(name = "Alumn_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Pupil pupilid;
+    private Alumn alumnid;
     @JoinColumn(name = "applicationExam_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Applicationexam applicationExamid;
@@ -99,12 +99,12 @@ public class Historyexam implements Serializable {
         this.dateEnd = dateEnd;
     }
 
-    public Pupil getPupilid() {
-        return pupilid;
+    public Alumn getAlumnid() {
+        return alumnid;
     }
 
-    public void setPupilid(Pupil pupilid) {
-        this.pupilid = pupilid;
+    public void setAlumnid(Alumn alumnid) {
+        this.alumnid = alumnid;
     }
 
     public Applicationexam getApplicationExamid() {
@@ -148,5 +148,5 @@ public class Historyexam implements Serializable {
     public String toString() {
         return "integradora.Historyexam[ id=" + id + " ]";
     }
-    
+
 }
