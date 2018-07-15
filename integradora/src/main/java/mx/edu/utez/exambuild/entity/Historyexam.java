@@ -13,6 +13,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,18 +23,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MarcoAntonio
+ * @author MARCOABM
  */
 @Entity
 @Table
 public class Historyexam implements Serializable {
 
     @Id
+    @GeneratedValue
     @Column
     private Integer id;
     @Column
@@ -41,6 +44,8 @@ public class Historyexam implements Serializable {
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateStart;
+    @Basic(optional = false)
+    @NotNull
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateEnd;
@@ -146,7 +151,7 @@ public class Historyexam implements Serializable {
 
     @Override
     public String toString() {
-        return "integradora.Historyexam[ id=" + id + " ]";
+        return "mx.edu.utez.exambuild.entity.Historyexam[ id=" + id + " ]";
     }
 
 }

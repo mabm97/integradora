@@ -21,12 +21,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MarcoAntonio
+ * @author MARCOABM
  */
 @Entity
 @Table
@@ -42,9 +44,11 @@ public class Question implements Serializable {
     private int value;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "questionid", fetch = FetchType.LAZY)
     private List<Answeropt> answeroptList;
-    @JoinColumn(name = "applicationExam_id", referencedColumnName = "id")
+    @JoinColumn(name = "Exam_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Applicationexam applicationExamid;
+    private Exam examid;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "questionid", fetch = FetchType.LAZY)
+    private List<Applicationexam> applicationexamList;
 
     public Question() {
     }
@@ -92,12 +96,21 @@ public class Question implements Serializable {
         this.answeroptList = answeroptList;
     }
 
-    public Applicationexam getApplicationExamid() {
-        return applicationExamid;
+    public Exam getExamid() {
+        return examid;
     }
 
-    public void setApplicationExamid(Applicationexam applicationExamid) {
-        this.applicationExamid = applicationExamid;
+    public void setExamid(Exam examid) {
+        this.examid = examid;
+    }
+
+    @XmlTransient
+    public List<Applicationexam> getApplicationexamList() {
+        return applicationexamList;
+    }
+
+    public void setApplicationexamList(List<Applicationexam> applicationexamList) {
+        this.applicationexamList = applicationexamList;
     }
 
     @Override
@@ -122,7 +135,7 @@ public class Question implements Serializable {
 
     @Override
     public String toString() {
-        return "integradora.Question[ id=" + id + " ]";
+        return "mx.edu.utez.exambuild.entity.Question[ id=" + id + " ]";
     }
     
 }

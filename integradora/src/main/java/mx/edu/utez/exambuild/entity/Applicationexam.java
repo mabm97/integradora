@@ -13,6 +13,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,18 +23,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MarcoAntonio
+ * @author MARCOABM
  */
 @Entity
 @Table
 public class Applicationexam implements Serializable {
 
     @Id
+    @GeneratedValue
     @Column
     private Integer id;
     @Column
@@ -44,11 +47,12 @@ public class Applicationexam implements Serializable {
     private Date dateEnd;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "applicationExamid", fetch = FetchType.LAZY)
     private List<Historyexam> historyexamList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "applicationExamid", fetch = FetchType.LAZY)
-    private List<Question> questionList;
     @JoinColumn(name = "Exam_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Exam examid;
+    @JoinColumn(name = "Question_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Question questionid;
 
     public Applicationexam() {
     }
@@ -96,21 +100,20 @@ public class Applicationexam implements Serializable {
         this.historyexamList = historyexamList;
     }
 
-    @XmlTransient
-    public List<Question> getQuestionList() {
-        return questionList;
-    }
-
-    public void setQuestionList(List<Question> questionList) {
-        this.questionList = questionList;
-    }
-
     public Exam getExamid() {
         return examid;
     }
 
     public void setExamid(Exam examid) {
         this.examid = examid;
+    }
+
+    public Question getQuestionid() {
+        return questionid;
+    }
+
+    public void setQuestionid(Question questionid) {
+        this.questionid = questionid;
     }
 
     @Override
@@ -135,7 +138,7 @@ public class Applicationexam implements Serializable {
 
     @Override
     public String toString() {
-        return "integradora.Applicationexam[ id=" + id + " ]";
+        return "mx.edu.utez.exambuild.entity.Applicationexam[ id=" + id + " ]";
     }
     
 }

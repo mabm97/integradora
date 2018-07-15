@@ -19,12 +19,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MarcoAntonio
+ * @author MARCOABM
  */
 @Entity
 @Table
@@ -42,10 +44,12 @@ public class Users implements Serializable {
     private String email;
     @Column
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usersid", fetch = FetchType.LAZY)
-    private List<Teacher> teacherList;
+    @Column
+    private String type;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usersid", fetch = FetchType.LAZY)
     private List<Alumn> alumnList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usersid", fetch = FetchType.LAZY)
+    private List<Teacher> teacherList;
 
     public Users() {
     }
@@ -54,12 +58,13 @@ public class Users implements Serializable {
         this.id = id;
     }
 
-    public Users(Integer id, String name, String lastName, String email, String password) {
+    public Users(Integer id, String name, String lastName, String email, String password, String type) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.type = type;
     }
 
     public Integer getId() {
@@ -102,13 +107,12 @@ public class Users implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
-    public List<Teacher> getTeacherList() {
-        return teacherList;
+    public String getType() {
+        return type;
     }
 
-    public void setTeacherList(List<Teacher> teacherList) {
-        this.teacherList = teacherList;
+    public void setType(String type) {
+        this.type = type;
     }
 
     @XmlTransient
@@ -118,6 +122,15 @@ public class Users implements Serializable {
 
     public void setAlumnList(List<Alumn> alumnList) {
         this.alumnList = alumnList;
+    }
+
+    @XmlTransient
+    public List<Teacher> getTeacherList() {
+        return teacherList;
+    }
+
+    public void setTeacherList(List<Teacher> teacherList) {
+        this.teacherList = teacherList;
     }
 
     @Override
@@ -142,7 +155,7 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "integradora.Users[ id=" + id + " ]";
+        return "mx.edu.utez.exambuild.entity.Users[ id=" + id + " ]";
     }
-
+    
 }

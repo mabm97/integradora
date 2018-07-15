@@ -12,23 +12,27 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MarcoAntonio
+ * @author MARCOABM
  */
 @Entity
 @Table
 public class Type implements Serializable {
 
     @Id
+    @GeneratedValue
     @Column
     private Integer id;
     @Column
@@ -95,7 +99,7 @@ public class Type implements Serializable {
 
     @Override
     public String toString() {
-        return "integradora.Type[ id=" + id + " ]";
+        return "mx.edu.utez.exambuild.entity.Type[ id=" + id + " ]";
     }
     
 }

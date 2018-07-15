@@ -21,15 +21,17 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MarcoAntonio
+ * @author MARCOABM
  */
 @Entity
-@Table  
+@Table
 public class Answeropt implements Serializable {
 
     @Id
@@ -122,7 +124,7 @@ public class Answeropt implements Serializable {
 
     @Override
     public String toString() {
-        return "integradora.Answeropt[ id=" + id + " ]";
+        return "mx.edu.utez.exambuild.entity.Answeropt[ id=" + id + " ]";
     }
     
 }

@@ -21,12 +21,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MarcoAntonio
+ * @author MARCOABM
  */
 @Entity
 @Table
@@ -133,7 +135,7 @@ public class Alumn implements Serializable {
 
     @Override
     public String toString() {
-        return "integradora.Alumn[ id=" + id + " ]";
+        return "mx.edu.utez.exambuild.entity.Alumn[ id=" + id + " ]";
     }
-
+    
 }

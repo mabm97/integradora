@@ -21,12 +21,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author MarcoAntonio
+ * @author MARCOABM
  */
 @Entity
 @Table
@@ -38,7 +40,6 @@ public class Exam implements Serializable {
     private Integer id;
     @Column
     private String description;
-    @Basic
     @Column
     private int difficult;
     @JoinColumn(name = "Category_id", referencedColumnName = "id")
@@ -53,6 +54,8 @@ public class Exam implements Serializable {
     @JoinColumn(name = "Type_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Type typeid;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "examid", fetch = FetchType.LAZY)
+    private List<Question> questionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "examid", fetch = FetchType.LAZY)
     private List<Applicationexam> applicationexamList;
 
@@ -125,6 +128,15 @@ public class Exam implements Serializable {
     }
 
     @XmlTransient
+    public List<Question> getQuestionList() {
+        return questionList;
+    }
+
+    public void setQuestionList(List<Question> questionList) {
+        this.questionList = questionList;
+    }
+
+    @XmlTransient
     public List<Applicationexam> getApplicationexamList() {
         return applicationexamList;
     }
@@ -155,7 +167,7 @@ public class Exam implements Serializable {
 
     @Override
     public String toString() {
-        return "integradora.Exam[ id=" + id + " ]";
+        return "mx.edu.utez.exambuild.entity.Exam[ id=" + id + " ]";
     }
     
 }
